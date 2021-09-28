@@ -21,7 +21,7 @@ contract MyEpicNFT is ERC721URIStorage {
   string[] secondWords = ["Buttlicker ", "Pennywhistle ", "Wankerton ", "BEANZZ ", "Big Meat ", "Porkins "];
   string[] thirdWords = ["the Conqueror", "the Terrible", "the Ugly", "the Illustrious", "the Bard", "the WITCH"];
 
-  constructor() ERC721 ("Real People", "SQUARE") {
+  constructor() ERC721 ("Real People", "REALPPL") {
     console.log("This is my NFT contract. Woah!");
   }
 
