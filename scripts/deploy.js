@@ -9,8 +9,6 @@ const main = async () => {
 
   await txn.wait();
   console.log("Minted NFT #1");
-
-  txn = await nftContract.makeAnEpicNFT();
 };
 
 const runMain = async () => {
