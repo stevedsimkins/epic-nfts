@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.0;
 
 // We need some util functions for strings.
@@ -6,6 +7,8 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "hardhat/console.sol";
 
+import {Base64} from "./libraries/Base64.sol";
+
 
 contract MyEpicNFT is ERC721URIStorage {
   using Counters for Counters.Counter;
@@ -13,15 +16,15 @@ contract MyEpicNFT is ERC721URIStorage {
 
   // This is our SVG code. All we need to change is the word that's displayed. Everything else stays the same.
   // So, we make a baseSvg variable here that all our NFTs can use.
-  string baseSvg = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: red; font-family: serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='black' /><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>";
+  string baseSvg = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: cornsilk; font-family: serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='sienna' /><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>";
 
   // I create three arrays, each with their own theme of random words.
   // Pick some random funny words, names of anime characters, foods you like, whatever! 
-  string[] firstWords = ["Lord ", "Lady ", "Sir ", "Royal ", "Duke ", "Earl "];
-  string[] secondWords = ["Buttlicker ", "Pennywhistle ", "Wankerton ", "BEANZZ ", "Big Meat ", "Porkins "];
-  string[] thirdWords = ["the Conqueror", "the Terrible", "the Ugly", "the Illustrious", "the Bard", "the WITCH"];
+  string[] firstWords = ["6oz ", "8oz ", "10oz ", "12oz ", "16oz ", "64oz "];
+  string[] secondWords = ["Decaf ", "Whole Milk ", "Oat Milk ", "Almond Milk ", "Iced "];
+  string[] thirdWords = ["Cappucino", "Mocha", "Latte", "Espresso", "Machiatto", "Cortado"];
 
-  constructor() ERC721 ("Real People", "REALPPL") {
+  constructor() ERC721 ("Coffee Bar", "COFFEEBAR") {
     console.log("This is my NFT contract. Woah!");
   }
 
@@ -65,7 +68,7 @@ contract MyEpicNFT is ERC721URIStorage {
                     '{"name": "',
                     // We set the title of our NFT as the generated word.
                     combinedWord,
-                    '", "description": "A collection of real people that totally existed long ago", "image": "data:image/svg+xml;base64,',
+                    '", "description": "A collection of different coffee drinks, may not reccomend all of them though", "image": "data:image/svg+xml;base64,',
                     // We add data:image/svg+xml;base64 and then append our base64 encode our svg.
                     Base64.encode(bytes(finalSvg)),
                     '"}'
