@@ -16,13 +16,15 @@ contract MyEpicNFT is ERC721URIStorage {
 
   // This is our SVG code. All we need to change is the word that's displayed. Everything else stays the same.
   // So, we make a baseSvg variable here that all our NFTs can use.
-  string baseSvg = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: cornsilk; font-family: serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='sienna' /><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>";
+  string baseSvg = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: #833921; font-family: Georgia, serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='#EDE6DE' /><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>";
 
   // I create three arrays, each with their own theme of random words.
   // Pick some random funny words, names of anime characters, foods you like, whatever! 
-  string[] firstWords = ["6oz ", "8oz ", "10oz ", "12oz ", "16oz ", "64oz "];
-  string[] secondWords = ["Decaf ", "Whole Milk ", "Oat Milk ", "Almond Milk ", "Iced "];
-  string[] thirdWords = ["Cappucino", "Mocha", "Latte", "Espresso", "Machiatto", "Cortado"];
+  string[] firstWords = ["Kid Size ", "Small ", "Medium ", "Large ", "64oz "];
+  string[] secondWords = ["Decaf ", "Whole Milk ", "Oat Milk ", "Almond Milk ", "Extra Hot ", "Extra Whip "];
+  string[] thirdWords = ["Cappucino", "Mocha", "Latte", "Flat White", "Machiatto", "Cortado"];
+  
+  event NewEpicNFTMinted(address sender, uint256 tokenId);
 
   constructor() ERC721 ("Coffee Bar", "COFFEEBAR") {
     console.log("This is my NFT contract. Woah!");
@@ -93,5 +95,7 @@ contract MyEpicNFT is ERC721URIStorage {
   
     _tokenIds.increment();
     console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
+
+    emit NewEpicNFTMinted(msg.sender, newItemId);
   }
 }
