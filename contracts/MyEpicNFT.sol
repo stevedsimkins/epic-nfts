@@ -56,8 +56,12 @@ contract MyEpicNFT is ERC721URIStorage {
     return _tokenIds.current();
   }
 
+  uint256 private _maxTokens = 50;
+
   function makeAnEpicNFT() public {
     uint256 newItemId = _tokenIds.current();
+
+    require(newItemId < _maxTokens, "Max tokens have been minted.");
 
     string memory first = pickRandomFirstWord(newItemId);
     string memory second = pickRandomSecondWord(newItemId);
