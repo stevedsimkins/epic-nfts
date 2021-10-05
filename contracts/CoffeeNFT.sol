@@ -16,7 +16,7 @@ contract CoffeeNFT is ERC721URIStorage {
 
   event NewEpicNFTMinted(address sender, uint256 tokenId); 
 
-  constructor() ERC721 ("Crypto Coffee", "CRYPTOCOFFEE") {
+  constructor() ERC721 ("Crypto Coffees", "CRYPTOCOFFEES") {
     console.log("This is my Coffee NFT contract!");
   }
 
@@ -32,20 +32,8 @@ contract CoffeeNFT is ERC721URIStorage {
     require(newItemId < _maxTokens, "Max tokens have beeb minted.");
 
     
-    string memory json = Base64.encode(
-        bytes(
-            string(
-                abi.encodePacked(
-                    '{"name": "Crypto Coffee", 
-                      "description": "An coffee drink made by NFT Barista", 
-                      "image": "ifps://QmamsmEFqgsyeygfvH2Q3zgRVKUNjArGRiwZGyZY8XJMCX/coffee.png"}'
-                )
-            )
-        )
-    );
-
     string memory finalTokenUri = string(
-      abi.encodePacked("data:application/json;base64,", json)
+      abi.encodePacked("data:application/json;base64,ewogICAgIm5hbWUiOiAiQ3J5cHRvIENvZmZlZSIsCiAgICAiZGVzY3JpcHRpb24iOiAiQSBDb2ZmZWUgbWFkZSBieSBubyBvdGhlciB0aGFuIHRoZSBORlQgQmFyaXN0YSIsCiAgICAiaW1hZ2UiOiAiaHR0cHM6Ly9nYXRld2F5LnBpbmF0YS5jbG91ZC9pcGZzL1FtYW1zbUVGcWdzeWV5Z2Z2SDJRM3pnUlZLVU5qQXJHUml3Wkd5Wlk4WEpNQ1giCn0=")
     );
 
     console.log("\n--------------------");
